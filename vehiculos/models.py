@@ -20,6 +20,9 @@ class Vehiculo(models.Model):
 	kilometraje = models.IntegerField()
 	status = models.CharField(max_length=10, default="Disponible", choices=status_choices)
 
+	class Meta:
+		ordering = ('apodo',)
+
 	def __str__(self):
 		return '{} {}'.format(self.apodo, self.placa)
 
@@ -68,4 +71,4 @@ class Seguro(models.Model):
 	poliza = models.FileField(upload_to='polizas/%Y/%m/%d/')
 
 	def __str__(self):
-		return '{}'.format(self.vehiculo)	
+		return '{}'.format(self.vehiculo)
