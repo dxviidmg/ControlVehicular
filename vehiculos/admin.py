@@ -16,8 +16,6 @@ class SeguroInline(admin.StackedInline):
     can_delete = False
     fk_name = 'vehiculo'    
 
-
-
 class VehiculoAdmin(admin.ModelAdmin):
     inlines = [DocumentacionInline, SeguroInline]
 

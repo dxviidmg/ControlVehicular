@@ -5,8 +5,8 @@ from django.utils import timezone
 
 class Reservacion(models.Model):
 	creacion = models.DateTimeField(default=timezone.now)
-	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-	vehiculo = models.OneToOneField(Vehiculo, on_delete=models.CASCADE, null=True, blank=True)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	vehiculo = models.ForeignKey(Vehiculo, on_delete=models.CASCADE)
 	destino = models.TextField()
 	asunto = models.TextField()
 	salida = models.DateTimeField(default=timezone.now)
@@ -17,12 +17,16 @@ class Reservacion(models.Model):
 		ordering = ('creacion',)
 
 	def __str__(self):
-		return '{} {}'.format(self.vehiculo, self.salida)
+		return 'Folio {} Vehiculo {} Salida {} Llegada {}'.format(self.pk, self.vehiculo, self.salida, self.llegada_real)
 
+	def update_status(self):
+		queryset = reversed(Vehiculo.objects.filter(pk__in = self.pk))
+		print(queryset)
+		
 class Revision(models.Model):
-	momento_choices = (
-		('Llegada', 'Llegada'), 
-		('Salida', 'Salida')
+	momento_choices = ( 
+		('Salida', 'Salida'),
+		('Llegada', 'Llegada'),
 	)
 	estado_choices = (
 		('Excelente', 'Excelente'), 

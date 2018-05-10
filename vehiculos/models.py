@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import datetime
 
+now = datetime.now()
+
 class Vehiculo(models.Model):
 	status_choices = (
 		('Disponible', 'Disponible'), 
@@ -27,7 +29,7 @@ class Vehiculo(models.Model):
 		return '{} {}'.format(self.apodo, self.placa)
 
 class Documentacion(models.Model):
-	now = datetime.now()
+#	now = datetime.now()
 	año = int(now.year)
 
 	meses_choices = (
