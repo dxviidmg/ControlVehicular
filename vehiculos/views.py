@@ -4,6 +4,7 @@ from .models import *
 from reservaciones.models import *
 from django.db.models import Q
 from django.utils import timezone
+
 now = timezone.now()
 
 class VehiculosListView(View):
@@ -18,7 +19,7 @@ class VehiculosListView(View):
 			reservaciones = Reservacion.objects.filter(vehiculo=vehiculo, salida__lte=now)
 			reservaciones = reservaciones.filter(Q(llegada_aproximada__gte=now) | Q(llegada_real__isnull=True))
 
-			print("test de carro", vehiculo)
+#			print("test de carro", vehiculo)
 			if reservaciones:
 #				print(vehiculo, "ocupado")			
 				for reservacion in reservaciones:
@@ -35,15 +36,10 @@ class VehiculosListView(View):
 				vehiculos_list.append({'vehiculo': vehiculo, 'ubicacion': 'Palma Gorda', 'status': 'Disponible'})
 #			if len(reservaciones) != 0:
 #				reservaciones2 = reservaciones.objects()
-		print("lista de dict")
-		print(vehiculos_list)
-#		ListOfChannelsByCategory = []
-
-#		for category in categories:
-#			ListOfChannelsByCategory.append({'category': category.name, 'channels': Channel.objects.filter(category=category, link_status="Functional")})
+#		print("lista de dict")
+#		print(vehiculos_list)
 
 		context = {
-#			'ListOfChannelsByCategory': ListOfChannelsByCategory,
 			'vehiculos_list': vehiculos_list
 		}
 		return render(request, template_name, context)

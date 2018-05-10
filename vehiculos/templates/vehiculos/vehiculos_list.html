@@ -2,32 +2,33 @@
 
 {%block content%}
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Placa</th>
-      <th scope="col">Apodo</th>
-      <th scope="col">Color</th>
-      <th scope="col">Status</th>      
-      <th scope="col">Ubicación</th>
-      <th scope="col">Usuario</th>      
-    </tr>
-  </thead>
-  <tbody>
+	<table class="table">
+		<thead>
+			<tr>
+			<th scope="col">Placa</th>
+			<th scope="col">Apodo</th>
+			<th scope="col">Color</th>
+			<th scope="col">Status</th>
+			<th scope="col">Ubicación</th>
+			<th scope="col">Usuario</th>
+			</tr>
+		</thead>
+		<tbody>
 
-{%for vehiculo in vehiculos_list%}
+		{%for vehiculo in vehiculos_list%}
 
-    <tr>
-      <td>{{vehiculo.vehiculo.placa}}</td>
-      <td>{{vehiculo.vehiculo.apodo}}</td>
-       <td>{{vehiculo.vehiculo.color}}</td>
-       <td>{{vehiculo.status}}</td>
-	   <td>{{vehiculo.ubicacion}}</td>       
-	   <td>{{vehiculo.user}}</td>       	   
-    </tr>
+			<tr>
+				<td>{{vehiculo.vehiculo.placa}}</td>
+				<td>{{vehiculo.vehiculo.apodo}}</td>
+				<td>{{vehiculo.vehiculo.color}}</td>
+				<td>{{vehiculo.status}}</td>
+				<td>{{vehiculo.ubicacion}}</td>
+				<td>{{vehiculo.user}}</td>
+			</tr>
 
-{%endfor%}
+		{%endfor%}
 
-  </tbody>
-</table>
+		</tbody>
+	</table>
+
 {%endblock content%}

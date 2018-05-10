@@ -13,6 +13,7 @@ class Licencia(models.Model):
 		('A', 'A'),
 		('B', 'B')
 	)
+	
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	tipo = models.CharField(max_length=1, default='A')
 	sangre = models.CharField(max_length=10)
@@ -24,7 +25,7 @@ class Licencia(models.Model):
 	def __str__(self):
 		return 'Licencia de {}'.format(self.user)
 
-#Muestra nombre completo	
+#Muestra nombre completo de la tabla Users	
 def get_full_name(self):
 	return '{} {} {}'.format(self.username, self.first_name, self.last_name)
 

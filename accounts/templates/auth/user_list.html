@@ -2,29 +2,34 @@
 
 {%block content%}
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Celular</th>
-      <th scope="col"># Licencia</th>
-      <th scope="col">Tipo Licencia</th>      
-      <th scope="col">Validez</th>
-    </tr>
-  </thead>
-  <tbody>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col" rowspan="2">Nombre</th>
+				<th scope="col" rowspan="2">Celular</th>
+				<th scope="col" colspan="3">Licencia de conducir</th>
+			</tr>		
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Tipo</th>      
+				<th scope="col">Validez</th>
+			</tr>
+		</thead>
+		<tbody>
 
-{%for user in object_list%}
-    
-    <tr>
-      <td>{{user.first_name}} {{user.last_name}}</td>
-      <td>{{user.perfil.telefono}}</td>
-      <th>{{user.username}}</th>
-      <td>{{user.licencia.tipo}}</td>
-      <td>{{user.licencia.validez}}</td>
-    </tr>
+	{%for user in object_list%}
 
-{%endfor%}
-  </tbody>
-</table>
+			<tr>
+				<td>{{user.first_name}} {{user.last_name}}</td>
+				<td>{{user.perfil.telefono}}</td>
+				<th>{{user.username}}</th>
+				<td>{{user.licencia.tipo}}</td>
+				<td>{{user.licencia.validez}}</td>
+			</tr>
+
+	{%endfor%}
+	
+		</tbody>
+	</table>
+
 {%endblock content%}
