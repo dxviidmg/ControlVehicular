@@ -5,8 +5,8 @@
 	<table class="table">
 		<thead>
 			<tr>
+			<th scope="col">Nombre</th>			
 			<th scope="col">Placa</th>
-			<th scope="col">Nombre</th>
 			<th scope="col">Color</th>
 			<th scope="col">Status</th>
 			<th scope="col">Ubicación</th>
@@ -19,13 +19,13 @@
 		{%for vehiculo in vehiculos_list%}
 
 			<tr>
-				<td>{{vehiculo.vehiculo.placa}}</td>
 				<td>{{vehiculo.vehiculo.nombre}}</td>
+				<td>{{vehiculo.vehiculo.placa}}</td>
 				<td>{{vehiculo.vehiculo.color}}</td>
 				<td>{{vehiculo.status}}</td>
 				<td>{{vehiculo.ubicacion}}</td>
 				<td>{{vehiculo.user}}</td>
-				<td><a href="{%url 'vehiculos:vehiculo-detail' vehiculo.vehiculo.pk%}">Reservar</a></td>
+				<td><a href="{%url 'vehiculos:vehiculo-detail' vehiculo.vehiculo.pk%}">{%if request.user.is_staff%}Reservar{%else%}Verificar calendario{%endif%}</a></td>
 			</tr>
 
 		{%endfor%}

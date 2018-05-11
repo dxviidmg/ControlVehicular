@@ -47,7 +47,12 @@ class VehiculosListView(View):
 class VehiculoDetailView(DetailView):
 	model = Vehiculo
 
-#	def get_context_data(self, **kwargs):
-#		reservaciones = Reservacion.objects.filter(vehiculo=self.vehiculo.pk)
-#		return reservaciones
-	#		return self.queryset.filter(book_id=self.kwargs.get('book_id'))		
+	def get_context_data(self, **kwargs):
+		# Call the base implementation first to get a context
+		context = super(VehiculoDetailView, self).get_context_data(**kwargs)
+		# Add extra context from another model
+		context['reservaciones'] = Reservacion.objects.filter(vehiculo=context['vehiculo'])
+		context['reservaciones'] = context['reservaciones'].filter(Q(salida=now) | Q(salida__gte=now))
+		print(context)
+#		print(context['vehiculo'])
+		return context
