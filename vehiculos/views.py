@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View, DetailView
 from .models import *
 from reservaciones.models import *
 from django.db.models import Q
@@ -27,13 +27,13 @@ class VehiculosListView(View):
 					
 				if len(revisiones) == 0:
 #					print(vehiculo, reservacion, "Apartado")
-					vehiculos_list.append({'vehiculo': vehiculo, 'ubicacion': 'Palma Gorda', 'status': 'Apartado', 'user': reservacion.user})
+					vehiculos_list.append({'vehiculo': vehiculo, 'ubicacion': 'Palma gorda', 'status': 'Apartado', 'user': reservacion.user})
 				if len(revisiones) == 1:
 #					print(vehiculo, reservacion, "Ocupado")
 					vehiculos_list.append({'vehiculo': vehiculo, 'ubicacion': reservacion.destino, 'status': 'Ocupado', 'user': reservacion.user})
 			else:
 #				print(vehiculo, 'libre')
-				vehiculos_list.append({'vehiculo': vehiculo, 'ubicacion': 'Palma Gorda', 'status': 'Disponible'})
+				vehiculos_list.append({'vehiculo': vehiculo, 'ubicacion': 'Palma gorda', 'status': 'Disponible'})
 #			if len(reservaciones) != 0:
 #				reservaciones2 = reservaciones.objects()
 #		print("lista de dict")
@@ -43,3 +43,11 @@ class VehiculosListView(View):
 			'vehiculos_list': vehiculos_list
 		}
 		return render(request, template_name, context)
+
+class VehiculoDetailView(DetailView):
+	model = Vehiculo
+
+#	def get_context_data(self, **kwargs):
+#		reservaciones = Reservacion.objects.filter(vehiculo=self.vehiculo.pk)
+#		return reservaciones
+	#		return self.queryset.filter(book_id=self.kwargs.get('book_id'))		

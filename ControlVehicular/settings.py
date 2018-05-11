@@ -125,3 +125,8 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
+
+from django.urls import reverse_lazy
+
+LOGIN_REDIRECT_URL = reverse_lazy('vehiculos:vehiculos-list')
+LOGOUT_REDIRECT_URL = reverse_lazy('accounts:login')

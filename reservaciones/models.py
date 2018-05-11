@@ -12,6 +12,7 @@ class Reservacion(models.Model):
 	salida = models.DateTimeField(default=timezone.now)
 	llegada_aproximada = models.DateTimeField(default=timezone.now)
 	llegada_real = models.DateTimeField(null=True, blank=True)
+	es_mantenimiento = models.BooleanField(default=False)
 
 	class Meta:
 		ordering = ('creacion',)

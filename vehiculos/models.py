@@ -18,15 +18,15 @@ class Vehiculo(models.Model):
 	numero_serie = models.CharField(max_length=50, unique=True)
 	placa = models.CharField(max_length=10, unique=True)
 	color = models.CharField(max_length=10)
-	apodo = models.CharField(max_length=10, null=True, blank=True)
+	nombre = models.CharField(max_length=10, null=True, blank=True)
 	kilometraje = models.IntegerField()
 	status = models.CharField(max_length=10, default="Disponible", choices=status_choices)
 
 	class Meta:
-		ordering = ('apodo',)
+		ordering = ('nombre',)
 
 	def __str__(self):
-		return '{} {}'.format(self.apodo, self.placa)
+		return '{} {}'.format(self.nombre, self.placa)
 
 class Documentacion(models.Model):
 #	now = datetime.now()
