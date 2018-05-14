@@ -15,10 +15,11 @@ class Vehiculo(models.Model):
 	clase = models.CharField(max_length=30)
 	tipo = models.CharField(max_length=30)
 	modelo = models.IntegerField()
-	numero_serie = models.CharField(max_length=50, unique=True)
+	numero = models.IntegerField(null=True, blank=True, unique=True)
+	numero_serie = models.IntegerField(unique=True)
 	placa = models.CharField(max_length=10, unique=True)
 	color = models.CharField(max_length=10)
-	nombre = models.CharField(max_length=10, null=True, blank=True)
+	nombre = models.CharField(max_length=10)
 	kilometraje = models.IntegerField()
 	status = models.CharField(max_length=10, default="Disponible", choices=status_choices)
 
@@ -69,7 +70,7 @@ class Seguro(models.Model):
 	aseguradora = models.ForeignKey(Aseguradora, on_delete=models.CASCADE)
 	validez = models.DateField()
 	numero_poliza = models.CharField(max_length=15)
-	iniciso = models.CharField(max_length=15)
+	inciso = models.CharField(max_length=15)
 	poliza = models.FileField(upload_to='polizas/%Y/%m/%d/')
 
 	def __str__(self):

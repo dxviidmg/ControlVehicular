@@ -53,6 +53,8 @@ class VehiculoDetailView(DetailView):
 		# Add extra context from another model
 		context['reservaciones'] = Reservacion.objects.filter(vehiculo=context['vehiculo'])
 		context['reservaciones'] = context['reservaciones'].filter(Q(salida=now) | Q(salida__gte=now))
-		print(context)
+
+		context['documentacion'] = Documentacion.objects.get(vehiculo=context['vehiculo'])
+		context['seguro'] = Seguro.objects.get(vehiculo=context['vehiculo'])	
 #		print(context['vehiculo'])
 		return context

@@ -2,21 +2,47 @@
 
 {%block content%}
 
-	<h1>Nombre: {{object.nombre}}</h1>
-	<h2>Placa: {{object.placa}}</h2>
+	<div class="row">
+		<div class="col-12">
+			<h1>{{object.numero}} {{object.nombre}}</h1>
+			<h2>Placa: {{object.placa}}</h2>
+		</div>
+		<div class="col-md-4">
+			<h2>Información general</h2>
+			<p>Descripción {{object.marca}} {{object.submarca}} {{object.clase}} {{object.tipo}}<br>Modelo: {{object.modelo}}<br>Número de Serie: {{object.numero_serie}}<br>Color: {{object.color}}<br>Kilometraje: {{object.color}}</p>
+		</div>
+		<div class="col-md-4">
+			<h2>Documentación</h2>
+			<p>Tarjeta de circulación: <a href="{{documentacion.tarjeta_circulacion.url}}">Ver</a><br>Verificación: <a href="{{documentacion.verificacion.url}}">Ver</a><br>Proxima verificación: {{documentacion.meses_proxima_verificacion}} {{documentacion.año_proxima_verificacion}}</p>
+		</div>	
+		<div class="col-md-4">
+			<h2>Seguro</h2>
+			<p>Poliza: <a href="{{seguro.poliza.url}}">Ver</a><br>Empresa aseguradora: {{seguro.aseguradora}}<br>Valido hasta: {{seguro.validez}}<br>Numero de poliza: {{seguro.numero_poliza}}<br>Inciso: {{seguro.inciso}}</p>			
+		</div>
+	</div>
 
-	<p>Descripción: {{object.marca}} {{object.submarca}} {{object.clase}} {{object.tipo}}</p>
+	<div class="row">
+		<div class="col-12"><h1>Calendario</h1>
+		</div>
 
-	<p>Modelo: {{object.modelo}}</p>
 
-	<p>NS: {{object.numero_serie}}</p>
+	{%for reservacion in reservaciones%}
 
-	<p>Color: {{object.color}}</p>
+		<div class="col-md-4">
+			<div class="card text-center" style="width: 100%;">
+				<div class="card-body">
+					<h5 class="card-title">{{reservacion.asunto}}</h5>
+					<p class="card-text">Folio: {{reservacion.pk}}<br>Usuario: {{reservacion.user}}<br>Destino: 
+					{{reservacion.destino}}<br> Salida:
+					{{reservacion.salida}}<br> Llegada aproximada: {{reservacion.llegada_aproximada}}</p>
+					<a href="#" class="btn btn-primary">Go somewhere</a>
+				</div>
+			</div>
+		</div>
+	{%endfor%}
 
-<h1>Documentacion</h1>
-pendiente. mostrar data
-<h1>Calendario</h1>
-{%for reservacion in reservaciones%}
-{{reservacion}}<br>
-{%endfor%}
+	</div>
 {%endblock content%}
+
+
+

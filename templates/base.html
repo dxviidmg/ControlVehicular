@@ -12,12 +12,37 @@
 </head>
 <body>
 
-{%if request.user.is_authenticated%}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">Control vehicular</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav ml-auto">
 
-	{%if request.user.is_staff%}
-	<a href="{%url 'accounts:accounts-list'%}">Usuarios</a> {%endif%} <a href="{%url 'vehiculos:vehiculos-list'%}">Vehiculos</a> <a href="{%url 'accounts:logout'%}">Salir</a>
-	
-{%endif%}
+		{%if request.user.is_authenticated%}
+
+			{%if request.user.is_staff%}
+				<li class="nav-item">
+					<a class="nav-link" href="{%url 'accounts:accounts-list'%}">Usuarios<span class="sr-only">(current)</span></a>
+				</li>
+					
+			{%endif%}					
+				<li class="nav-item">
+					<a class="nav-link" href="{%url 'vehiculos:vehiculos-list'%}">Vehiculos</a>
+				</li>
+
+
+				<li class="nav-item">
+					<a class="nav-link" href="{%url 'accounts:logout'%}">Salir</a>
+				</li>
+			</ul>
+
+		{%endif%}
+			
+		</div>
+	</nav>
+
 	<section class="container">
 		{%block content%}
 		{%endblock content%}

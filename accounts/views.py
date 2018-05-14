@@ -7,5 +7,5 @@ class AccountsListView(ListView):
 	template = 'accounts/accounts_list.html'
 
 	def get_queryset(self):
-		accounts = User.objects.filter(is_staff=False)
+		accounts = User.objects.filter(is_staff=False).exclude(username=invitado)
 		return accounts
