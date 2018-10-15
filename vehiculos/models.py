@@ -16,7 +16,7 @@ class Vehiculo(models.Model):
 	tipo = models.CharField(max_length=30)
 	modelo = models.IntegerField()
 	numero = models.IntegerField(null=True, blank=True, unique=True)
-	numero_serie = models.IntegerField(unique=True)
+	numero_serie = models.CharField(max_length=30, unique=True)
 	placa = models.CharField(max_length=10, unique=True)
 	color = models.CharField(max_length=10)
 	nombre = models.CharField(max_length=10)

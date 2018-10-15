@@ -15,7 +15,7 @@ class Licencia(models.Model):
 	)
 	
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	tipo = models.CharField(max_length=1, default='A')
+	tipo = models.CharField(max_length=1, default='A', choices=tipo_choices)
 	sangre = models.CharField(max_length=10)
 	restriccion = models.CharField(max_length=30)
 	validez = models.DateField()
@@ -29,4 +29,4 @@ class Licencia(models.Model):
 def get_full_name(self):
 	return '{} {}'.format(self.first_name, self.last_name)
 
-User.add_to_class('__str__', get_full_name)	
+User.add_to_class('__str__', get_full_name)
